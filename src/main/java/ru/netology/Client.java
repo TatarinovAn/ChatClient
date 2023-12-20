@@ -19,10 +19,13 @@ public class Client {
 
 
     // получаем имя клиента
-    public Client() throws InterruptedException {
+
+
+    public Client() {}
+    public void start() throws InterruptedException {
 
         StringBuffer sb = new StringBuffer();
-        try (FileReader reader = new FileReader("D://Chat/Setting/setting.txt")) {
+        try (FileReader reader = new FileReader("setting.txt")) {
             int c;
             while ((c = reader.read()) != -1) {
                 sb.append((char) c);
@@ -57,9 +60,7 @@ public class Client {
                     if (inMessage.hasNext()) {
                         // считываем его
                         String inMes = inMessage.nextLine();
-                        File fileChat = new File("D://Chat/Mes_Client"); // Создание файла сообщений
-                        fileChat.mkdirs();
-                        try (FileWriter writer = new FileWriter("D://Chat/Mes_Client/mes.txt", true)) {
+                        try (FileWriter writer = new FileWriter("message.txt", true)) {
                             writer.write(inMes);
                             writer.append('\n');
                             writer.flush();
